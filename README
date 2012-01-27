@@ -4,6 +4,11 @@ Some programs to roughly align two point clouds representing the same underlying
 The goal is to accurately register two point clouds created from different image spectrums 
 (e.g. visual to infrared), in different coordinate systems of different scales.  
 
+This depends on:
+- PCL (http://pointclouds.org/)
+- CMake and some c++ compiler
+Also used the pcl visualization library, which depends on some toolkit (I use QT4).
+
 Current approach is:
 - Take two point clouds 
 - Estimate normals for each point
@@ -15,10 +20,10 @@ Current approach is:
 
 
 Usage Example:
-#estimate correspondences
+#estimate correspondences - saves a corrs.txt file
 ./corrs cloudA.ply cloudB.ply AtoBCorrs.txt
 
-#run rough alignment
+#run rough alignment using corrs
 ./align cloudA.ply cloudB.ply AtoBCorrs.txt
 
 #saves files:
