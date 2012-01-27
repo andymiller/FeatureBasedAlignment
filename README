@@ -32,3 +32,8 @@ eoRough.pcd - cloud B after RANSAC alignment
 irFinal.pcd - cloud A after ICP alignment
 eoFinal.pcd - cloud B after ICP alignment
 
+
+other tools include bbox and circular cropping
+./bbox cloud.pcd
+
+./crop cloud.pcd centerX centerY centerZ radius out.pcd
