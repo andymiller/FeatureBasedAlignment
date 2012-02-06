@@ -52,3 +52,7 @@ target_link_libraries(bbox pcl_alignment ${pcl_libs})
 add_executable(crop cropper.cxx)
 target_link_libraries(crop pcl_alignment ${pcl_libs})
 
+add_executable(distance distance.cxx)
+target_link_libraries(distance pcl_alignment ${pcl_libs})
+
+

@@ -12,18 +12,20 @@ int main(int argc, char* argv[])
   typedef pcl::PointXYZ PointXYZ;
   typedef pcl::PointCloud<PointXYZ> PointCloud;
 
-  int argI=1;
-  PointCloud::Ptr cloud = util::loadCloud(argv[argI++]);
-
+  //--- grab center argument ---
   //create center point
-  PointXYZ center(util::fromString<float>(argv[argI++]),
-                  util::fromString<float>(argv[argI++]),
-                  util::fromString<float>(argv[argI++]));
+  PointXYZ center(util::fromString<float>(argv[2]),
+                  util::fromString<float>(argv[3]),
+                  util::fromString<float>(argv[4]));
   PointXYZ centerZ(center.x, center.y, 0.0);
 
   //radius
-  double radius = util::fromString<double>(argv[argI++]); 
+  double radius = util::fromString<double>(argv[5]); 
   double rad2 = radius*radius;
+  cout<<"Cropping cloud around point: "<<center<<" with radius "<<radius<<endl;
+
+  //load cloud from file
+  PointCloud::Ptr cloud = util::loadCloud(argv[1]);
 
   //create cropped cloud - just crop along xy plane
   PointCloud::Ptr out(new PointCloud());
@@ -36,7 +38,7 @@ int main(int argc, char* argv[])
 
   //save cloud
   cout<<"Saving cloud of size: "<<out->size()<<endl;
-  util::saveCloud(argv[argI++], *out);
+  util::saveCloud(argv[6], *out);
 
   return 0;
 }
